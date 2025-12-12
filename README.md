@@ -1,10 +1,10 @@
-# 🌐 Social Media Web App
+#  Social Media Web App
 
 A full-stack social media platform built with the MERN stack and REST API architecture, enabling users to share posts, interact with content, and connect with others.
 
 ---
 
-## 🖥️ Technologies Used
+##  Technologies Used
 
 ### Frontend
 - React.js
@@ -22,31 +22,31 @@ A full-stack social media platform built with the MERN stack and REST API archit
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
-✨ User registration and authentication
+ User registration and authentication
 
-✨ Secure login system with JWT tokens
+ Secure login system with JWT tokens
 
-✨ Create and share posts with text captions
+ Create and share posts with text captions
 
-✨ Like and unlike posts
+ Like and unlike posts
 
-✨ Discover suggested users
+ Discover suggested users
 
-✨ Follow and unfollow users
+ Follow and unfollow users
 
-✨ View follower and following counts
+ View follower and following counts
 
-✨ Browse posts from followed users
+ Browse posts from followed users
 
-✨ Interact with posts in your feed
+ Interact with posts in your feed
 
-✨ Update and edit user profile information
+ Update and edit user profile information
 
 ---
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before running this application, ensure you have:
 
@@ -56,7 +56,7 @@ Before running this application, ensure you have:
 
 ---
 
-## 🔧 Installation & Setup
+##  Installation & Setup
 
 ### Step 1: Clone the Repository
 ```bash
@@ -82,17 +82,17 @@ Ensure MongoDB is running locally or set up MongoDB Atlas connection string in e
 
 ---
 
-## 🌐 Running the Application
+##  Running the Application
 
 **Frontend:** http://localhost:3000
 
-**Backend:** http://localhost:5000
+**Backend:** http://localhost:4000
 
 > Make sure both servers are running simultaneously for full functionality
 
 ---
 
-## 📱 Application Flow
+##  Application Flow
 
 1. Register/Sign up as a new user
 2. Login with your credentials
@@ -104,7 +104,7 @@ Ensure MongoDB is running locally or set up MongoDB Atlas connection string in e
 
 ---
 
-## 🛠️ Project Structure
+##  Project Structure
 
 ```
 project-root/
@@ -122,7 +122,7 @@ project-root/
 
 ---
 
-## 🔐 Security Features
+##  Security Features
 
 - JWT-based authentication
 - Password encryption
@@ -131,16 +131,17 @@ project-root/
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Feel free to submit pull requests or open issues.
 
 ---
 
-## 📄 License
+##  License
 
 This project is open source and available for educational purposes.
 
 ---
 
 **Built with ❤️ using MERN Stack**
+
