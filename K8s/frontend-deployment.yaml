@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: social-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: social-frontend
+  template:
+    metadata:
+      labels:
+        app: social-frontend
+    spec:
+      containers:
+        - name: social-frontend
+          image: 241500730684.dkr.ecr.eu-north-1.amazonaws.com/social-frontend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://backend-service:4000"
+              

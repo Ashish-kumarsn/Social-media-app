@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment 
+  labels:
+    app: social-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: social-backend
+  template:
+    metadata:
+      labels:
+        app: social-backend
+    spec:
+      containers:
+        - name: social-backend
+          image: 241500730684.dkr.ecr.eu-north-1.amazonaws.com/social-backend:latest
+          ports: 
+            - containerPort: 4000
+          env:
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: PORT
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: JWT_KEY
+            - name: MONGO_DB
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: MONGO_DB
