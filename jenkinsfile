@@ -1,0 +1,81 @@
+pipeline{
+    agent any 
+    environment{
+        AWS_REGION="eu-north-1"
+        BACKEND_REPO="241500730684.dkr.ecr.eu-north-1.amazonaws.com/social-backend"
+        FRONTEND_REPO="241500730684.dkr.ecr.eu-north-1.amazonaws.com/social-frontend"
+    }
+    stages{
+
+
+        stage('Code Checkout'){
+            steps{
+                git branch:'main',
+                    url:'https://github.com/Ashish-kumarsn/Social-media-app.git'
+
+            }
+        }
+
+        stage('AWS ECR login'){
+            steps{
+                withCredentials([usernamePassword(
+                    credentialsId:'aws-creds',
+                    usernameVariable:'AWS_ACCESS_KEY_ID',
+                    passwordVariable:'AWS_SECRET_ACCESS_KEY'
+                )]){
+                    sh '''
+                        echo "Logging in to the AWS ECR..."
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+
+                        aws ecr get-login-password --region ${AWS_REGION} \
+                        | docker login --username AWS --password-stdin 241500730684.dkr.ecr.${AWS_REGION}.amazonaws.com
+                    '''
+                }
+            }
+        }
+
+        stage('Build Backend Image'){
+            steps{
+                sh '''
+                    echo " Buiding Backend Docker Image..."
+                    cd Server
+                    docker build -t backend-image .
+                    docker tag backend-image ${BACKEND_REPO}:latest
+                '''
+            }
+        }
+
+        stage('Build Frontend Image'){
+            steps{
+                sh '''
+                    echo " Building Frontend Docker Image..."
+                    cd client 
+                    docker build --build-arg REACT_APP_API_URL="http://localhost:4000" -t frontend-image .
+                    docker tag frontend-image ${FRONTEND_REPO}:latest
+                '''
+            }
+        }
+
+        stage('Push Image to ECR'){
+            steps{
+                sh '''
+                    echo " Pushing backend Image..."
+                    docker push ${BACKEND_REPO}:latest
+                    echo " Pushing the frontend Image..."
+                    docker push ${FRONTEND_REPO}:latest
+
+                '''
+            }
+        }
+
+        stage('CleanUp Docker'){
+            steps{
+                sh '''
+                docker system prune -f
+                '''
+            }
+        }
+
+    }
+}
