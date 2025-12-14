@@ -42,10 +42,13 @@ const PostShare = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (!user) return;
+
         const newPost = {
             userId: user._id,
             desc: desc.current.value,
         }
+
 
         if (image) {
             const data = new FormData();
@@ -68,7 +71,14 @@ const PostShare = () => {
 
     return (
         <div className="PostShare">
-            <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "defaultProfile.png"} alt="" />
+            <img
+                src={
+                    user?.profilePicture
+                        ? serverPublic + user.profilePicture
+                        : serverPublic + "defaultProfile.png"
+                }
+                alt=""
+            />
 
             <div>
                 <input type="text" placeholder='Write a caption...' required ref={desc} />
