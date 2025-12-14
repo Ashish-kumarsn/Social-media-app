@@ -69,6 +69,22 @@ pipeline{
             }
         }
 
+
+
+        stage('Deploy to EKS'){
+            steps{
+                sh '''
+                    echo "Deploying to EKS (default namespace)..."
+                    kubectl apply -f K8s/
+                    echo "Waiting for backend rollout..."
+                    kubectl rollout status deployment/backend-deployment
+                    echo "Waiting for the frontend rollout..."
+                    kubectl rollout status deployment/frontend-deployment
+
+                '''
+            }
+        }
+
         stage('CleanUp Docker'){
             steps{
                 sh '''
