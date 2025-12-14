@@ -48,6 +48,7 @@ spec:
                 name: backend-service
                 port:
                   number: 4000
+
           # Frontend (MUST BE LAST)
           - path: /
             pathType: Prefix
@@ -56,4 +57,3 @@ spec:
                 name: frontend-service
                 port:
                   number: 3000
-                  
