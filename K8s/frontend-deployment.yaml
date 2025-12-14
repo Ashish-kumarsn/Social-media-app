@@ -19,7 +19,3 @@ spec:
           image: 241500730684.dkr.ecr.eu-north-1.amazonaws.com/social-frontend:latest
           ports:
             - containerPort: 3000
-          env:
-            - name: REACT_APP_API_URL
-              value: "http://backend-service:4000"
-              

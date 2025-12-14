@@ -10,11 +10,7 @@ import { uploadImage, uploadPost } from '../../actions/UploadAction';
 
 const PostShare = () => {
   const dispatch = useDispatch();
-
-  // post state
   const loading = useSelector((state) => state.postReducer.uploading);
-
-  // 🔒 SAFE auth selector (NO destructuring)
   const authData = useSelector((state) => state.authReducer.authData);
   const user = authData?.user ?? null;
 
@@ -22,9 +18,9 @@ const PostShare = () => {
   const imageRef = useRef(null);
   const desc = useRef(null);
 
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  // ✅ Fixed: Images are served from /images path through backend
+  const serverPublic = '/images/';
 
-  // 🛑 HARD GUARD – first render protection
   if (!user) {
     return null;
   }
